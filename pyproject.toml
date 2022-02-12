@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "meltano-playground"
+version = "0.1.0"
+description = "Resources for meltano DAG development + scheduling"
+authors = ["seanglynn <seanglynn06@hotmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.10"
+meltano = "^1.95.0"
+dagster = "^0.13.19"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
