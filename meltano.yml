@@ -20,15 +20,18 @@ plugins:
       schema: earthquakes
       streams: earthquakes
       record_list_level: features[*]
-      # streams_config:
-      # - name: us_earthquakes
-      #   path: /event/1/query
     select:
     - '*.*'
   loaders:
   - name: target-jsonl
     variant: andyh1203
     pip_url: target-jsonl
+  orchestrators:
+  - name: airflow
+    pip_url: apache-airflow==2.1.2 --constraint https://raw.githubusercontent.com/apache/airflow/constraints-2.1.2/constraints-${MELTANO__PYTHON_VERSION}.txt
+  files:
+  - name: airflow
+    pip_url: git+https://gitlab.com/meltano/files-airflow.git
 schedules:
 - name: rest-api-to-jsonl
   extractor: tap-rest-api
