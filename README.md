@@ -1,8 +1,7 @@
 # Meltano Playground
 
-Resources for meltano DAG development + scheduling
-
-Dagster | Airflow | Prefect
+Resources for meltano DAG development + test schedulers:
+Dagster | Airflow
 
 ## Getting started (Without Docker)
 
@@ -21,7 +20,6 @@ open http://localhost:5000
 ```
 
 ## Getting started (With Docker)
-
 
 1. Start the `meltano-ui` service (and any others) in the background:
 
