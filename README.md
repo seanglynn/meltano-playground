@@ -2,7 +2,7 @@
 
 Resources for meltano DAG development + scheduling
 
-Dagster | Airflow | Prefect
+Dagster | Airflow
 
 ## Getting started (Without Docker)
 
