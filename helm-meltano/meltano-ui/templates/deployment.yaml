@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meltano-ui-deployment
+  labels:
+    app: meltano-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meltano-ui
+  template:
+    metadata:
+      labels:
+        app: meltano-ui
+    spec:
+      containers:
+        - name: meltano-ui
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          command: ["meltano", "ui"]
+          env:
+            - name: MELTANO_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: meltano-env
+                  key: database-uri
+      {{- if .Values.meltano.b64_env_file -}}
+          volumeMounts:
+            - name: env-file
+              mountPath: "/project/.env"
+              subPath: ".env"
+              readOnly: true
+      volumes:
+        - name: env-file
+          secret:
+            secretName: meltano-env
+            items:
+              - key: env-file
+                path: ".env"
+      {{- end }}
