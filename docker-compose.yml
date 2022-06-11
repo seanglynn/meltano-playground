@@ -11,7 +11,7 @@ x-meltano-env: &meltano-env
 
 x-airflow-env: &airflow-env
   AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgres://postgres:yurt@airflow-metadata-db/airflow
-  AIRFLOW__CORE__EXECUTOR: LocalExecutor
+  AIRFLOW__CORE__EXECUTOR: SequentialExecutor
 
 services:
   meltano-ui:
