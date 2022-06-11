@@ -1,6 +1,6 @@
 # Meltano Playground
 
-Resources for meltano DAG development + test schedulers:
+Resources for meltano DAG development + testing schedulers:
 Dagster | Airflow
 
 ## Getting started (Without Docker)
