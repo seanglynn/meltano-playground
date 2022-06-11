@@ -5,13 +5,13 @@ x-meltano-image: &meltano-image
   build: .
 
 x-meltano-env: &meltano-env
-  MELTANO_DATABASE_URI: postgresql://postgres:postgres@meltano-system-db/meltano
-  MELTANO_ENVIRONMENT: dev
+  MELTANO_DATABASE_URI: postgresql://postgres:yurt@meltano-system-db/meltano
   MELTANO_CLI_LOG_LEVEL: debug
+  # MELTANO_ENVIRONMENT: dev
 
 x-airflow-env: &airflow-env
-  AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgres://postgres:postgres@airflow-metadata-db/airflow
-  AIRFLOW__CORE__EXECUTOR: LocalExecutor
+  AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgres://postgres:yurt@airflow-metadata-db/airflow
+  AIRFLOW__CORE__EXECUTOR: SequentialExecutor
 
 services:
   meltano-ui:
@@ -24,7 +24,7 @@ services:
     expose:
       - 5000
     ports:
-      - 5000:5000
+      - 5005:5000
     depends_on:
       - meltano-system-db
     networks:
