@@ -22,6 +22,37 @@ plugins:
       record_list_level: features[*]
     select:
     - '*.*'
+  - name: tap-rest-api-msdk
+    namespace: tap_rest_api_msdk
+    pip_url: tap-rest-api-msdk
+    executable: tap-rest-api-msdk
+    capabilities:
+    - state
+    - catalog
+    - discover
+    settings:
+    - name: api_url
+    - name: name
+    - name: path
+    - name: params
+    - name: headers
+    - name: records_path
+  - name: tap-postgres
+    variant: transferwise
+    pip_url: pipelinewise-tap-postgres
+    config:
+      default_replication_method: FULL_TABLE
+    settings:
+    - name: dbname
+    - name: host
+    - name: user
+    - name: password
+      kind: password
+    capabilities:
+    - catalog
+    - discover
+    - properties
+    - state
   loaders:
   - name: target-jsonl
     variant: andyh1203
@@ -32,10 +63,3 @@ plugins:
   files:
   - name: airflow
     pip_url: git+https://gitlab.com/meltano/files-airflow.git
-schedules:
-- name: rest-api-to-jsonl
-  extractor: tap-rest-api
-  loader: target-jsonl
-  transform: skip
-  interval: '@once'
-  start_date: 2022-02-12 09:57:43.934485
