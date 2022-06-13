@@ -37,6 +37,7 @@ plugins:
     - name: params
     - name: headers
     - name: records_path
+    - name: streams
   - name: tap-postgres
     variant: transferwise
     pip_url: pipelinewise-tap-postgres

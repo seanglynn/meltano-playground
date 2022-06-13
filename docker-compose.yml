@@ -7,11 +7,15 @@ x-meltano-image: &meltano-image
 x-meltano-env: &meltano-env
   MELTANO_DATABASE_URI: postgresql://postgres:yurt@meltano-system-db/meltano
   MELTANO_CLI_LOG_LEVEL: debug
+  MELTANO_PROJECT_READONLY: 'false'
   # MELTANO_ENVIRONMENT: dev
 
 x-airflow-env: &airflow-env
   AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgres://postgres:yurt@airflow-metadata-db/airflow
   AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+  AIRFLOW__CORE__DAGS_FOLDER: orchestrate/airflow/dags
+  AIRFLOW__CORE__RBAC: 'false'
+  AIRFLOW__CORE__AUTHENTICATE: 'false'
   _AIRFLOW_WWW_USER_CREATE: 'true'
   _AIRFLOW_WWW_USER_USERNAME: airflow
   _AIRFLOW_WWW_USER_PASSWORD: airflow
